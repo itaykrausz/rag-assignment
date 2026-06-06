@@ -1,4 +1,4 @@
-import os
+﻿import os
 from functools import lru_cache
 from typing import Any, List, Optional
 
@@ -15,7 +15,7 @@ load_dotenv()
 # Configuration
 ###############################################################################
 
-ANSWER_NOT_FOUND = "I don’t know based on the provided Medium articles data."
+ANSWER_NOT_FOUND = "I don't know based on the provided Medium articles data."
 
 
 class Settings:
@@ -57,8 +57,7 @@ class Settings:
             "explicitly contained in the retrieved context. "
             f'If the answer cannot be determined from the provided context, respond: "{ANSWER_NOT_FOUND}" '
             "Always explain your answer using the given context, quoting or paraphrasing "
-            "the relevant article passage or metadata when helpful. "
-            "The context may include metadata fields: title, URL, authors, timestamp, and tags."
+            "the relevant article passage or metadata when helpful."
         )
 
 
