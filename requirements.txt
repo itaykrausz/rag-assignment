@@ -4,3 +4,5 @@ pinecone>=5.0.0
 tiktoken>=0.7.0
 pandas>=2.0.0
 uvicorn[standard]>=0.30.0
+python-dotenv>=1.0.0
+tqdm>=4.66.0
