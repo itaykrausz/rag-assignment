@@ -89,10 +89,6 @@ class ContextChunk(BaseModel):
     title: str
     chunk: str
     score: float
-    url: Optional[str] = None
-    authors: Optional[str] = None
-    timestamp: Optional[str] = None
-    tags: Optional[str] = None
 
 
 class AugmentedPrompt(BaseModel):
@@ -199,28 +195,11 @@ def build_context_chunk(match: Any) -> ContextChunk:
         title=str(metadata.get("title", "")),
         chunk=str(metadata.get("text", "")),
         score=get_match_score(match),
-        url=str(metadata.get("url", "")) or None,
-        authors=str(metadata.get("authors", "")) or None,
-        timestamp=str(metadata.get("timestamp", "")) or None,
-        tags=str(metadata.get("tags", "")) or None,
     )
 
 
 def format_context_block(chunk: ContextChunk) -> str:
-    metadata_parts = [
-        f"Article ID: {chunk.article_id}",
-        f"Title: {chunk.title}",
-    ]
-    if chunk.url:
-        metadata_parts.append(f"URL: {chunk.url}")
-    if chunk.authors:
-        metadata_parts.append(f"Authors: {chunk.authors}")
-    if chunk.timestamp:
-        metadata_parts.append(f"Timestamp: {chunk.timestamp}")
-    if chunk.tags:
-        metadata_parts.append(f"Tags: {chunk.tags}")
-
-    return "[" + " | ".join(metadata_parts) + "]\n" + chunk.chunk
+    return f"[Article ID: {chunk.article_id} | Title: {chunk.title}]\n{chunk.chunk}"
 
 
 def build_user_prompt(question: str, context_chunks: List[ContextChunk]) -> str:
